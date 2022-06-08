@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "540819165123",
+    "project_id": "brain-saver-7dce2",
+    "storage_bucket": "brain-saver-7dce2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540819165123:android:4226471f7b51833b85b776",
+        "android_client_info": {
+          "package_name": "com.rlebranchu.brain_saver_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540819165123-demna82i7u0g3jongqqqevcd4i80veoo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1BhwwoBC1yBfDaWh_Lu3muKa1xPqMCHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540819165123-demna82i7u0g3jongqqqevcd4i80veoo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "540819165123-temb32k39t8ht2itcubk31v0cslo9dit.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rlebranchu"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
