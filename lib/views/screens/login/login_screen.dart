@@ -1,4 +1,4 @@
-import 'package:brain_saver_flutter/views/screens/login/cubit/login/login_cubit.dart';
+import 'package:brain_saver_flutter/views/screens/login/cubit/login_cubit.dart';
 import 'package:brain_saver_flutter/repositories/auth_repository.dart';
 import 'package:brain_saver_flutter/views/screens/login/login_form.dart';
 import 'package:flutter/material.dart';

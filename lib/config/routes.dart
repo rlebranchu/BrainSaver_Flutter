@@ -8,7 +8,7 @@ List<Page> onGenerateAppViewPage(
 ) {
   switch (state) {
     case AppStatus.authenticated:
-      return [HomeScreen.page()];
+      return [HomeNavScreen.page()];
     case AppStatus.unauthenticated:
       return [LoginScreen.page()];
   }
