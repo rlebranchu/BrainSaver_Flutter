@@ -1,8 +1,8 @@
 import 'package:brain_saver_flutter/blocs/app/app_bloc.dart';
+import 'package:brain_saver_flutter/repositories/repositories.dart';
 import 'package:brain_saver_flutter/views/screens/home_nav/cubit/home_nav_cubit.dart';
 import 'package:brain_saver_flutter/views/screens/screens.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class HomeNavScreen extends StatelessWidget {
@@ -51,19 +51,22 @@ class HomeNavScreen extends StatelessWidget {
             );
           },
         ),
-        body: BlocBuilder<HomeNavCubit, HomeNavState>(
-          builder: (context, state) {
-            switch (state.index) {
-              case 0:
-                return const ScheduleScreen();
-              case 1:
-                return const TodoScreen();
-              case 2:
-                return const NoteScreen();
-              default:
-                return Container();
-            }
-          },
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: BlocBuilder<HomeNavCubit, HomeNavState>(
+            builder: (context, state) {
+              switch (state.index) {
+                case 0:
+                  return ScheduleScreen();
+                case 1:
+                  return const TodoScreen();
+                case 2:
+                  return const NoteScreen();
+                default:
+                  return Container();
+              }
+            },
+          ),
         ),
       ),
     );

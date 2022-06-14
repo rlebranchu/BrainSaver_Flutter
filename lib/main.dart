@@ -2,7 +2,7 @@ import 'package:brain_saver_flutter/bloc_observer.dart';
 import 'package:brain_saver_flutter/blocs/app/app_bloc.dart';
 import 'package:brain_saver_flutter/config/routes.dart';
 import 'package:brain_saver_flutter/firebase_options.dart';
-import 'package:brain_saver_flutter/repositories/auth_repository.dart';
+import 'package:brain_saver_flutter/repositories/repositories.dart';
 import 'package:brain_saver_flutter/views/theme/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flow_builder/flow_builder.dart';
