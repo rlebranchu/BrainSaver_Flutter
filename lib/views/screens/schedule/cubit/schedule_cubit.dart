@@ -19,4 +19,9 @@ class ScheduleCubit extends Cubit<ScheduleState> {
         await _scheduleRepository.fetchListAppointmentOfUser(userId);
     emit(state.copyWith(appointments: appointments));
   }
+
+  void deleteAppointment(String userId, Appointment appointment) async {
+    await _scheduleRepository.deleteAppointment(appointment);
+    fetchListAppointmentOfUser(userId);
+  }
 }

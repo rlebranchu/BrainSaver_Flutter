@@ -14,4 +14,8 @@ class ScheduleRepository {
   Future<void> saveAppointment(String userId, Appointment appointment) async {
     await _scheduleService.saveAppointment(userId, appointment);
   }
+
+  Future<void> deleteAppointment(Appointment appointment) async {
+    await _scheduleService.deleteAppointment(appointment);
+  }
 }

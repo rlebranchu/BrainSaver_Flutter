@@ -1,4 +1,5 @@
 import 'package:brain_saver_flutter/blocs/app/app_bloc.dart';
+import 'package:brain_saver_flutter/models/appointment_model.dart';
 import 'package:brain_saver_flutter/repositories/schedule_repository.dart';
 import 'package:brain_saver_flutter/views/screens/schedule/cubit/schedule_cubit.dart';
 import 'package:brain_saver_flutter/views/screens/schedule/cubit/schedule_form_cubit.dart';
@@ -33,8 +34,43 @@ class ScheduleScreen extends StatelessWidget {
 }
 
 class _Calendar extends StatelessWidget {
+  _showDeleteModal(
+      BuildContext context, String userId, Appointment appointment) {
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (_) {
+        return SingleChildScrollView(
+          padding: MediaQuery.of(context).viewInsets,
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: ElevatedButton(
+              child: const Text(
+                'Delete Appointment',
+                style: TextStyle(fontSize: 15),
+              ),
+              onPressed: () => {
+                context.read<ScheduleCubit>().deleteAppointment(
+                      userId,
+                      appointment,
+                    ),
+                Navigator.pop(context)
+              },
+            ),
+          ),
+        );
+      },
+      isScrollControlled: true,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25.0), topRight: Radius.circular(25.0)),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final user = context.select((AppBloc appBloc) => appBloc.state.user);
     return BlocBuilder<ScheduleCubit, ScheduleState>(
       buildWhen: (previous, current) =>
           previous.appointments != current.appointments,
@@ -48,6 +84,11 @@ class _Calendar extends StatelessWidget {
               appointmentDisplayMode:
                   sfCal.MonthAppointmentDisplayMode.indicator,
             ),
+            onTap: (sfCal.CalendarTapDetails details) {
+              if (details.targetElement == sfCal.CalendarElement.appointment) {
+                _showDeleteModal(context, user.id, details.appointments!.first);
+              }
+            },
           ),
         );
       },
@@ -58,6 +99,7 @@ class _Calendar extends StatelessWidget {
 class _AddAppointmentButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final user = context.select((AppBloc appBloc) => appBloc.state.user);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: ElevatedButton(
@@ -74,7 +116,9 @@ class _AddAppointmentButton extends StatelessWidget {
                   topLeft: Radius.circular(25.0),
                   topRight: Radius.circular(25.0)),
             ),
-          );
+          ).then((value) => context
+              .read<ScheduleCubit>()
+              .fetchListAppointmentOfUser(user.id));
         },
         child: const Text('Add Appointment', style: TextStyle(fontSize: 15)),
       ),

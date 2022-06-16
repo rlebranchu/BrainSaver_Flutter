@@ -19,4 +19,8 @@ class ScheduleService {
         .collection("appointments")
         .add(appointment.toDocument(userId));
   }
+
+  Future<void> deleteAppointment(Appointment appointment) async {
+    await _firestore.collection("appointments").doc(appointment.id).delete();
+  }
 }
