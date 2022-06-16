@@ -11,22 +11,25 @@ import 'package:syncfusion_flutter_calendar/calendar.dart' as sfCal;
 final ScheduleRepository _scheduleRepository = ScheduleRepository();
 
 class ScheduleScreen extends StatelessWidget {
-  ScheduleScreen({Key? key}) : super(key: key);
+  const ScheduleScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final user = context.select((AppBloc appBloc) => appBloc.state.user);
-    return Scaffold(
-      body: BlocProvider(
-        create: (_) => ScheduleCubit(
-          _scheduleRepository,
-          user.id,
-        ),
-        child: Column(
-          children: [
-            _Calendar(),
-            _AddAppointmentButton(),
-          ],
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        body: BlocProvider(
+          create: (_) => ScheduleCubit(
+            _scheduleRepository,
+            user.id,
+          ),
+          child: Column(
+            children: [
+              _Calendar(),
+              _AddAppointmentButton(),
+            ],
+          ),
         ),
       ),
     );

@@ -23,6 +23,22 @@ class NoteScreen extends StatelessWidget {
               const SizedBox(height: 26),
               _NoteField(),
             ],
+    final user = context.select((AppBloc appBloc) => appBloc.state.user);
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        body: Align(
+          alignment: const Alignment(0, 0),
+          child: BlocProvider(
+            create: (_) => NoteCubit(NoteRepository(), user.id),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                _TitleInput(),
+                const SizedBox(height: 26),
+                _NoteField(),
+              ],
+            ),
           ),
         ),
       ),

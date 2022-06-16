@@ -12,26 +12,29 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('SIGNUP')),
-      body: SingleChildScrollView(
-        reverse: true,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: BlocProvider(
-                create: (_) => SignupCubit(
-                  context.read<AuthRepository>(),
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        appBar: AppBar(title: const Text('SIGNUP')),
+        body: SingleChildScrollView(
+          reverse: true,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: BlocProvider(
+                  create: (_) => SignupCubit(
+                    context.read<AuthRepository>(),
+                  ),
+                  child: const SignupForm(),
                 ),
-                child: const SignupForm(),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+              ),
+            ],
+          ),
         ),
       ),
     );

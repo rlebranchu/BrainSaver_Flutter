@@ -11,27 +11,30 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text('LOGIN')),
-      body: SingleChildScrollView(
-        reverse: true,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: BlocProvider(
-                create: (_) => LoginCubit(
-                  context.read<AuthRepository>(),
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(title: const Text('LOGIN')),
+        body: SingleChildScrollView(
+          reverse: true,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: BlocProvider(
+                  create: (_) => LoginCubit(
+                    context.read<AuthRepository>(),
+                  ),
+                  child: const LoginForm(),
                 ),
-                child: const LoginForm(),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+              ),
+            ],
+          ),
         ),
       ),
     );
