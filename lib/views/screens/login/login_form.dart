@@ -1,6 +1,7 @@
+import 'package:brain_saver_flutter/views/components/components.dart';
 import 'package:brain_saver_flutter/views/screens/login/cubit/login_cubit.dart';
-import 'package:brain_saver_flutter/views/components/textformfield_app.dart';
 import 'package:brain_saver_flutter/views/screens/screens.dart';
+import 'package:brain_saver_flutter/views/theme/style_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -80,8 +81,10 @@ class _LoginButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return state.status == LoginStatus.submitting
-            ? const CircularProgressIndicator()
-            : ElevatedButton(
+            ? const CircularProgressIndicator(
+                color: PRIMARYCOLOR,
+              )
+            : ElevatedButtonValidation(
                 onPressed: () {
                   context.read<LoginCubit>().logInWithCredentials();
                 },

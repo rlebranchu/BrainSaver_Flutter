@@ -1,5 +1,6 @@
-import 'package:brain_saver_flutter/views/components/textformfield_app.dart';
+import 'package:brain_saver_flutter/views/components/components.dart';
 import 'package:brain_saver_flutter/views/screens/signup/cubit/signup_cubit.dart';
+import 'package:brain_saver_flutter/views/theme/style_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -70,8 +71,10 @@ class _SignUpButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return state.status == SignupStatus.submitting
-            ? const CircularProgressIndicator()
-            : ElevatedButton(
+            ? const CircularProgressIndicator(
+                color: PRIMARYCOLOR,
+              )
+            : ElevatedButtonValidation(
                 onPressed: () {
                   context.read<SignupCubit>().signupFormSubmitted();
                 },

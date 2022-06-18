@@ -1,9 +1,11 @@
 import 'package:brain_saver_flutter/blocs/app/app_bloc.dart';
 import 'package:brain_saver_flutter/models/appointment_model.dart';
 import 'package:brain_saver_flutter/repositories/schedule_repository.dart';
+import 'package:brain_saver_flutter/views/components/components.dart';
 import 'package:brain_saver_flutter/views/screens/schedule/cubit/schedule_cubit.dart';
 import 'package:brain_saver_flutter/views/screens/schedule/cubit/schedule_form_cubit.dart';
 import 'package:brain_saver_flutter/views/screens/schedule/schedule_form.dart';
+import 'package:brain_saver_flutter/views/theme/style_const.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart' as sfCal;
@@ -66,7 +68,9 @@ class _Calendar extends StatelessWidget {
       backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25.0), topRight: Radius.circular(25.0)),
+          topLeft: Radius.circular(BORDERRADIUS),
+          topRight: Radius.circular(BORDERRADIUS),
+        ),
       ),
     );
   }
@@ -105,7 +109,7 @@ class _AddAppointmentButton extends StatelessWidget {
     final user = context.select((AppBloc appBloc) => appBloc.state.user);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: ElevatedButton(
+      child: ElevatedButtonValidation(
         onPressed: () {
           showModalBottomSheet<void>(
             context: context,
@@ -116,8 +120,8 @@ class _AddAppointmentButton extends StatelessWidget {
             backgroundColor: Colors.white,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(25.0),
-                  topRight: Radius.circular(25.0)),
+                  topLeft: Radius.circular(BORDERRADIUS),
+                  topRight: Radius.circular(BORDERRADIUS)),
             ),
           ).then((value) => context
               .read<ScheduleCubit>()

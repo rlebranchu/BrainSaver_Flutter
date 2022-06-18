@@ -165,9 +165,9 @@ class _SaveButton extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.appointment.eventName != current.appointment.eventName,
       builder: (context, state) {
-        return state.appointment.eventName == ""
+        return state.appointment.eventName.isEmpty
             ? Container()
-            : ElevatedButton(
+            : ElevatedButtonValidation(
                 child: const Text('Save Appointment',
                     style: TextStyle(fontSize: 15)),
                 onPressed: () => {

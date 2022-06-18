@@ -39,17 +39,6 @@ class AppTheme {
           filled: true,
           fillColor: Colors.white,
         ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            primary: PRIMARYCOLOR,
-            minimumSize: const Size.fromHeight(50),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(BORDERRADIUS),
-            ),
-            textStyle:
-                const TextStyle(fontSize: 19.0, fontFamily: 'Montserrat'),
-          ),
-        ),
         dialogTheme: DialogTheme(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(BORDERRADIUS),

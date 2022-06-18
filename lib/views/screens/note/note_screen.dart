@@ -2,6 +2,7 @@ import 'package:brain_saver_flutter/blocs/app/app_bloc.dart';
 import 'package:brain_saver_flutter/repositories/repositories.dart';
 import 'package:brain_saver_flutter/views/components/components.dart';
 import 'package:brain_saver_flutter/views/screens/note/cubit/note_cubit.dart';
+import 'package:brain_saver_flutter/views/theme/style_const.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -127,24 +128,36 @@ class _NoteFieldState extends State<_NoteField> {
                 context.read<NoteCubit>().saveNotes(user.id);
               }
             },
-            child: TextFormField(
-              controller: _controller,
-              onChanged: (notes) {
-                context.read<NoteCubit>().notesChanged(notes);
-              },
-              keyboardType: TextInputType.multiline,
-              maxLength: 1000,
-              maxLines: null,
-              expands: true,
-              textAlignVertical: TextAlignVertical.top,
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
+            child: Container(
+              decoration: BoxDecoration(
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      offset: const Offset(1.4, 1.4),
+                      blurRadius: 10.0),
+                ],
+              ),
+              child: TextFormField(
+                controller: _controller,
+                onChanged: (notes) {
+                  context.read<NoteCubit>().notesChanged(notes);
+                },
+                keyboardType: TextInputType.multiline,
+                maxLength: 1000,
+                maxLines: null,
+                expands: true,
+                textAlignVertical: TextAlignVertical.top,
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(BORDERRADIUS)),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(BORDERRADIUS)),
+                  ),
+                  counterText: '${1000 - state.notes.length} characters left',
                 ),
-                focusedBorder: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                ),
-                counterText: '${1000 - state.notes.length} characters left',
               ),
             ),
           ),
