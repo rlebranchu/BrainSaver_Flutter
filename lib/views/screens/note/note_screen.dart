@@ -71,18 +71,28 @@ class _TitleInputState extends State<_TitleInput> {
               context.read<NoteCubit>().saveNotes(user.id);
             }
           },
-          child: TextFormField(
-            controller: _controller,
-            onChanged: (title) {
-              context.read<NoteCubit>().titleChanged(title);
-            },
-            decoration: const InputDecoration(
-              hintText: 'Title of your note',
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    offset: const Offset(1.4, 1.4),
+                    blurRadius: 10.0),
+              ],
             ),
-            style: Theme.of(context).textTheme.headline2,
-            textAlignVertical: TextAlignVertical.center,
-            textAlign: TextAlign.center,
-            enableSuggestions: false,
+            child: TextFormField(
+              controller: _controller,
+              onChanged: (title) {
+                context.read<NoteCubit>().titleChanged(title);
+              },
+              decoration: const InputDecoration(
+                hintText: 'Title of your note',
+              ),
+              style: Theme.of(context).textTheme.headline2,
+              textAlignVertical: TextAlignVertical.center,
+              textAlign: TextAlign.center,
+              enableSuggestions: false,
+            ),
           ),
         );
       },
@@ -128,36 +138,24 @@ class _NoteFieldState extends State<_NoteField> {
                 context.read<NoteCubit>().saveNotes(user.id);
               }
             },
-            child: Container(
-              decoration: BoxDecoration(
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      offset: const Offset(1.4, 1.4),
-                      blurRadius: 10.0),
-                ],
-              ),
-              child: TextFormField(
-                controller: _controller,
-                onChanged: (notes) {
-                  context.read<NoteCubit>().notesChanged(notes);
-                },
-                keyboardType: TextInputType.multiline,
-                maxLength: 1000,
-                maxLines: null,
-                expands: true,
-                textAlignVertical: TextAlignVertical.top,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(BORDERRADIUS)),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(BORDERRADIUS)),
-                  ),
-                  counterText: '${1000 - state.notes.length} characters left',
+            child: TextFormField(
+              controller: _controller,
+              onChanged: (notes) {
+                context.read<NoteCubit>().notesChanged(notes);
+              },
+              keyboardType: TextInputType.multiline,
+              maxLength: 1000,
+              maxLines: null,
+              expands: true,
+              textAlignVertical: TextAlignVertical.top,
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(BORDERRADIUS)),
                 ),
+                focusedBorder: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(BORDERRADIUS)),
+                ),
+                counterText: '${1000 - state.notes.length} characters left',
               ),
             ),
           ),

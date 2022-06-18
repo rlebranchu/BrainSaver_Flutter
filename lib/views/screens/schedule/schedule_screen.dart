@@ -48,7 +48,7 @@ class _Calendar extends StatelessWidget {
           padding: MediaQuery.of(context).viewInsets,
           child: Padding(
             padding: const EdgeInsets.all(20),
-            child: ElevatedButton(
+            child: ElevatedButtonValidation(
               child: const Text(
                 'Delete Appointment',
                 style: TextStyle(fontSize: 15),
