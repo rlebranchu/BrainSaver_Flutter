@@ -28,10 +28,10 @@ class _TitleInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.todoTitle != current.todoTitle,
       builder: (context, state) {
         return TextFieldApp(
-            label: 'Name of appointment',
+            label: 'Name of Todo',
             initialValue: state.todoTitle,
-            onChange: (appointmentName) =>
-                context.read<TodoFormCubit>().todoTitleChanged(appointmentName),
+            onChange: (todoName) =>
+                context.read<TodoFormCubit>().todoTitleChanged(todoName),
             textAlign: TextAlign.center);
       },
     );
