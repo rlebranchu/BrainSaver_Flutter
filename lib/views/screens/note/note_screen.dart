@@ -11,7 +11,9 @@ class NoteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the user logged and store in AppState
     final user = context.select((AppBloc appBloc) => appBloc.state.user);
+    // GestureDetector to detect all click on background to hide keyboard
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -59,6 +61,7 @@ class _TitleInputState extends State<_TitleInput> {
 
   @override
   Widget build(BuildContext context) {
+    // Get the user logged and store in AppState
     final user = context.select((AppBloc appBloc) => appBloc.state.user);
     return BlocBuilder<NoteCubit, NoteState>(
       buildWhen: (previous, current) => previous.title != current.title,
@@ -125,6 +128,7 @@ class _NoteFieldState extends State<_NoteField> {
 
   @override
   Widget build(BuildContext context) {
+    // Get the user logged and store in AppState
     final user = context.select((AppBloc appBloc) => appBloc.state.user);
     return BlocBuilder<NoteCubit, NoteState>(
       buildWhen: (previous, current) => previous.title != current.title,

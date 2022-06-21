@@ -9,6 +9,7 @@ class User extends Equatable {
 
   static const empty = User(id: '');
 
+  // Functions to define if object is empty or not
   bool get isEmpty => this == User.empty;
   bool get isNotEmpty => this != User.empty;
 

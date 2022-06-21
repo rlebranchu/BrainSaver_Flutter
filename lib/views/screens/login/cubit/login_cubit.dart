@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:brain_saver_flutter/repositories/auth_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 part 'login_state.dart';
 
@@ -27,8 +28,11 @@ class LoginCubit extends Cubit<LoginState> {
     // Else -> submitting status is forced to start Login
     emit(state.copyWith(status: LoginStatus.submitting));
     try {
-      await _authRepository.logInWithEmailAndPassword(
+      UserCredential? status = await _authRepository.logInWithEmailAndPassword(
           email: state.email, password: state.password);
+      if (status == null) {
+        emit(state.copyWith(status: LoginStatus.error));
+      }
     } catch (_) {}
   }
 }

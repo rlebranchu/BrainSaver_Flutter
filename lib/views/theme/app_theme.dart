@@ -11,18 +11,21 @@ class AppTheme {
         scaffoldBackgroundColor: Colors.white,
         // Define the default font family.
         fontFamily: 'Montserrat',
+        // Define global theme of app
         appBarTheme: const AppBarTheme(
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.transparent,
           foregroundColor: FONTCOLOR,
         ),
+        // Theme for bottom naviggator component
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           elevation: 10.0,
           backgroundColor: Colors.white,
           selectedItemColor: PRIMARYCOLOR,
           unselectedItemColor: Colors.grey,
         ),
+        // Set differents TextStyle for multiple type of text
         textTheme: const TextTheme(
           headline1: TextStyle(
               color: FONTCOLOR, fontSize: 30.0, fontWeight: FontWeight.bold),
@@ -32,6 +35,7 @@ class AppTheme {
           bodyText1: TextStyle(fontSize: 14.0),
           bodyText2: TextStyle(color: PRIMARYCOLOR, fontSize: 14.0),
         ),
+        // Theme to apply border radius white color to all input of app
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(BORDERRADIUS),
@@ -39,6 +43,7 @@ class AppTheme {
           filled: true,
           fillColor: Colors.white,
         ),
+        // Theme to apply border radius to all dialog of app
         dialogTheme: DialogTheme(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(BORDERRADIUS),

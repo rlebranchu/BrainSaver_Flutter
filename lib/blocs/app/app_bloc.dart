@@ -18,9 +18,11 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         super(authRepository.currentUser.isNotEmpty
             ? AppState.authenticated(authRepository.currentUser)
             : const AppState.unauthenticated()) {
+    // Link Events to Functions
     on<AppUserChanged>(_onUserChanged);
     on<AppLogoutRequested>(_onLogoutRequested);
 
+    // On each modification of the user in AuhtRepository, AppUserChanged event is generated
     _userSubscription = _authRepository.user.listen(
       (user) => add(AppUserChanged(user)),
     );
@@ -42,6 +44,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   @override
   Future<void> close() {
+    // At end of the bloc, we destroy the stream linked to user's modification
     _userSubscription?.cancel();
     return super.close();
   }

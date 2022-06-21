@@ -16,11 +16,13 @@ class Todo extends Equatable {
   @override
   List get props => [id, title, complete];
 
+  // Convertion function : Firestore Document to Note Object
   Todo.fromDocumentSnapshot(DocumentSnapshot<Map<String, dynamic>> doc)
       : id = doc.id,
         title = doc.data()!["title"],
         complete = doc.data()!["complete"];
 
+  // Convertion function : Note Object to Firestore Document
   Map<String, dynamic> toDocument(String userId) {
     return {"userId": userId, "title": title, "complete": complete};
   }

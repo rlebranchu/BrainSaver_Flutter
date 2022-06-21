@@ -7,11 +7,13 @@ import 'package:brain_saver_flutter/views/theme/style_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// Form to create a new appointment
 class ScheduleForm extends StatelessWidget {
   const ScheduleForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Container of all form's input
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -22,6 +24,7 @@ class ScheduleForm extends StatelessWidget {
           buildWhen: (previous, current) =>
               previous.appointment.isAllDay != current.appointment.isAllDay,
           builder: (context, state) {
+            // Is AllDay Chekbox is checked -> we don't show the start and end DatetimePicker
             return state.appointment.isAllDay
                 ? Container()
                 : Column(
@@ -41,6 +44,7 @@ class ScheduleForm extends StatelessWidget {
   }
 }
 
+// Title Input
 class _TitleInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -60,6 +64,7 @@ class _TitleInput extends StatelessWidget {
   }
 }
 
+// Category DrowDown
 class _CategoryInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -69,6 +74,7 @@ class _CategoryInput extends StatelessWidget {
         const Text('Category: '),
         const SizedBox(width: 20),
         BlocBuilder<ScheduleFormCubit, ScheduleFormState>(
+          // Refresh only if Event's Category of state has changed
           buildWhen: (previous, current) =>
               previous.appointment.category != current.appointment.category,
           builder: (context, state) {
@@ -84,8 +90,6 @@ class _CategoryInput extends StatelessWidget {
                   child: Text(items.name),
                 );
               }).toList(),
-              // After selecting the desired option,it will
-              // change button value to selected value
               onChanged: (String? newCategory) => context
                   .read<ScheduleFormCubit>()
                   .categoryChanged(newCategory!),
@@ -101,6 +105,7 @@ class _AllDayCheckBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ScheduleFormCubit, ScheduleFormState>(
+      // Refresh only if Event's Completion of state has changed
       buildWhen: (previous, current) =>
           previous.appointment.isAllDay != current.appointment.isAllDay,
       builder: (context, state) {
@@ -125,6 +130,7 @@ class _StartTimePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ScheduleFormCubit, ScheduleFormState>(
+      // Refresh only if Event's Start of state has changed
       buildWhen: (previous, current) =>
           previous.appointment.from != current.appointment.from,
       builder: (context, state) {
@@ -143,6 +149,7 @@ class _EndTimePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ScheduleFormCubit, ScheduleFormState>(
+      // Refresh only if Event's End of state has changed
       buildWhen: (previous, current) =>
           previous.appointment.to != current.appointment.to,
       builder: (context, state) {
@@ -160,11 +167,13 @@ class _EndTimePicker extends StatelessWidget {
 class _SaveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Get the user logged and store in AppState
     final user = context.select((AppBloc appBloc) => appBloc.state.user);
     return BlocBuilder<ScheduleFormCubit, ScheduleFormState>(
       buildWhen: (previous, current) =>
           previous.appointment.eventName != current.appointment.eventName,
       builder: (context, state) {
+        // Hide the validation button if eventName is empty to prohibit creation of empty appointment
         return state.appointment.eventName.isEmpty
             ? Container()
             : ElevatedButtonValidation(

@@ -23,6 +23,7 @@ class Appointment extends Equatable {
       required this.category,
       required this.isAllDay});
 
+  // Initialisation of an empty appointment
   static final empty = Appointment(
     id: '',
     eventName: '',
@@ -37,17 +38,21 @@ class Appointment extends Equatable {
   List<Object?> get props =>
       [id, eventName, from, to, background, category, isAllDay];
 
+  // Get background Color via the category of the appointment
   static Color _getBackgroundColorByCategory(String categoryName) =>
       (CATEGORYCOLOR.firstWhere(
           (category) => category.isCategoryNamed(categoryName),
           orElse: () => CategoryAppointment.error)).color;
 
+  // Fucntion to know if the appointment is defined to all the day
+  // Algorithm : StartTime == Endtimme And StartTime.Time == '00:00:00'
   static bool _isAllDay(DateTime startTime, DateTime endTime) =>
       startTime.isAtSameMomentAs(endTime) &&
       startTime.hour == 0 &&
       startTime.minute == 0 &&
       startTime.second == 0;
 
+  // Convertion function : Firestore Document to Appointment Object
   Appointment.fromDocumentSnapshot(DocumentSnapshot<Map<String, dynamic>> doc)
       : id = doc.id,
         eventName = doc.data()!["title"],
@@ -58,6 +63,7 @@ class Appointment extends Equatable {
         isAllDay = _isAllDay(
             doc.data()!["startTime"].toDate(), doc.data()!["endTime"].toDate());
 
+  // Convertion function : Appointment Object to Firestore Document
   Map<String, dynamic> toDocument(String userId) {
     return {
       "category": category,

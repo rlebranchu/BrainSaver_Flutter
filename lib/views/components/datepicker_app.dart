@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
+// Component DatePicker
 class DatePickerApp extends StatelessWidget {
   final String label;
   final Function onChange;
@@ -21,6 +22,7 @@ class DatePickerApp extends StatelessWidget {
         Text(label),
         TextButton(
           onPressed: () {
+            // Function launch to show bottom modal with date time formular
             DatePicker.showDateTimePicker(
               context,
               showTitleActions: true,

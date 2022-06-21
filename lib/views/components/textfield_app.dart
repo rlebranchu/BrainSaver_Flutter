@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Custom TextField to assign shadow  to standard TextField Flutter Component
 class TextFieldApp extends StatelessWidget {
   final String label;
   final Function onChange;
@@ -25,6 +26,7 @@ class TextFieldApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // Add Shadow to Input
       decoration: BoxDecoration(
         boxShadow: <BoxShadow>[
           BoxShadow(

@@ -17,7 +17,9 @@ class ScheduleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the user logged and store in AppState
     final user = context.select((AppBloc appBloc) => appBloc.state.user);
+    // GestureDetector to detect all click on background to hide keyboard
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -77,6 +79,7 @@ class _Calendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the user logged and store in AppState
     final user = context.select((AppBloc appBloc) => appBloc.state.user);
     return BlocBuilder<ScheduleCubit, ScheduleState>(
       buildWhen: (previous, current) =>
@@ -106,6 +109,7 @@ class _Calendar extends StatelessWidget {
 class _AddAppointmentButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Get the user logged and store in AppState
     final user = context.select((AppBloc appBloc) => appBloc.state.user);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),

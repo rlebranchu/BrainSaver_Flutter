@@ -3,38 +3,41 @@ import 'package:flutter/cupertino.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart' as sfCal;
 
 class AppointmentDataSource extends sfCal.CalendarDataSource {
-  /// Creates a meeting data source, which used to set the appointment
-  /// collection to the calendar
+  // Creates a appointment data source : necessary to sfCalendar
+  // collection to the calendar
   AppointmentDataSource(List<Appointment> source) {
     appointments = source;
   }
 
+  //------------------------------------------------------------------
+  // Getters to access to attributs of item of appointment's list
+  //------------------------------------------------------------------
   @override
   DateTime getStartTime(int index) {
-    return _getMeetingData(index).from;
+    return _getAppointmentData(index).from;
   }
 
   @override
   DateTime getEndTime(int index) {
-    return _getMeetingData(index).to;
+    return _getAppointmentData(index).to;
   }
 
   @override
   String getSubject(int index) {
-    return _getMeetingData(index).eventName;
+    return _getAppointmentData(index).eventName;
   }
 
   @override
   Color getColor(int index) {
-    return _getMeetingData(index).background;
+    return _getAppointmentData(index).background;
   }
 
   @override
   bool isAllDay(int index) {
-    return _getMeetingData(index).isAllDay;
+    return _getAppointmentData(index).isAllDay;
   }
 
-  Appointment _getMeetingData(int index) {
+  Appointment _getAppointmentData(int index) {
     final dynamic meeting = appointments![index];
     late final Appointment meetingData;
     if (meeting is Appointment) {

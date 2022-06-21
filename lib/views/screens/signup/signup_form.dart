@@ -4,11 +4,13 @@ import 'package:brain_saver_flutter/views/theme/style_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// Form to allow sign up to user of application
 class SignupForm extends StatelessWidget {
   const SignupForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Container of differents element of sign up form
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -26,12 +28,15 @@ class SignupForm extends StatelessWidget {
   }
 }
 
+// Emil Input
 class _EmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignupCubit, SignupState>(
+      // Refresh only if email of state has changed
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
+        // Use Custom TextFormFieldApp for email
         return TextFormFieldApp(
             label: 'Identifiant',
             onChange: (email) {
@@ -45,12 +50,15 @@ class _EmailInput extends StatelessWidget {
   }
 }
 
+// Password Input
 class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignupCubit, SignupState>(
+      // Refresh only if password of state has changed
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
+        // Use Custom TextFormFieldApp to password with obscure options
         return TextFormFieldApp(
             label: 'Password',
             onChange: (password) {
@@ -68,6 +76,7 @@ class _SignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignupCubit, SignupState>(
+      // Refresh only if status of state has changed
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return state.status == SignupStatus.submitting

@@ -13,9 +13,11 @@ Future<void> main() {
   return BlocOverrides.runZoned(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
+      // Get Firestore Configuration and start connection
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
+      // Create unique AutheRepository instance
       final AuthRepository authRepository = AuthRepository();
       runApp(App(authRepository: authRepository));
     },
@@ -34,6 +36,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
       value: _authRepository,
+      // Create Global Bloc : AppBLoc
       child: BlocProvider(
         create: (_) => AppBloc(authRepository: _authRepository),
         child: const AppView(),
@@ -49,6 +52,7 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Initalization of Material App Root
     return MaterialApp(
       theme: AppTheme().Theme,
       title: 'Brain Saver',

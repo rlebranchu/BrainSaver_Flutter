@@ -1,6 +1,7 @@
 import 'package:brain_saver_flutter/views/theme/style_const.dart';
 import 'package:flutter/material.dart';
 
+// Custom Component : Big Dark button
 class ElevatedButtonValidation extends StatelessWidget {
   final Widget child;
   final Function onPressed;
